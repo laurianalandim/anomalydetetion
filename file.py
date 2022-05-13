@@ -43,6 +43,7 @@ classifiers = {
 
 xx , yy = np.meshgrid(np.linspace(0,1 , 200), np.linspace(0, 1, 200))
 
+
 for i, (clf_name, clf) in enumerate(classifiers.items()):
     clf.fit(X)
     # predict raw anomaly score
