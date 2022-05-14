@@ -41,6 +41,8 @@ classifiers = {
         'Average KNN': KNN(method='mean',contamination=outliers_fraction)
 }
 
+##
+
 xx , yy = np.meshgrid(np.linspace(0,1 , 200), np.linspace(0, 1, 200))
 
 
