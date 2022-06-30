@@ -3,5 +3,3 @@ pyod.egg-info/
 .cache/
 .pytest_cache
 __pycache__
-public/results/*
-public/data_source/*
