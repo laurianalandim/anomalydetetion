@@ -3,4 +3,5 @@ pyod.egg-info/
 .cache/
 .pytest_cache
 __pycache__
-rca.csv
+public/results/*
+public/data_source/*
