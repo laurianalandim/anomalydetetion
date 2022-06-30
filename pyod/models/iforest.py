@@ -10,7 +10,7 @@ from __future__ import print_function
 import numpy as np
 from joblib import Parallel
 from joblib.parallel import delayed
-from sklearn.utils.fixes import _joblib_parallel_args
+#from sklearn.utils.fixes import _joblib_parallel_args
 
 from sklearn.ensemble import IsolationForest
 from sklearn.utils.validation import check_is_fitted
