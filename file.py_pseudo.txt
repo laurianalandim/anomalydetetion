@@ -1,0 +1,79 @@
+from datetime IMPORT datetime, timedelta, timezone
+
+
+
+DEFINE FUNCTION getConfusionMatrix(faults, predicted):
+
+    
+
+    SET truePositive TO []
+
+    SET trueNegative TO []
+
+    SET falsePositive TO []
+
+    SET falseNegative TO []
+
+    SET predicted TO predicted.assign(date_time TO list(map( lambda x: datetime.fromtimestamp(x/1000), predicted.timestamp)))
+
+    
+
+    FOR i, act IN faults.iterrows():        
+
+        SET minTime TO datetime.strptime(act.time_preliminary,'%Y-%m-%d %H:%M:%S+08:00')
+
+        SET maxTime TO minTime + timedelta(minutes=5)
+
+
+
+        truePositive.append(predicted.loc[(predicted.date_time > minTime) & (predicted.date_time < maxTime) & (predicted.predition EQUALS 1) & (predicted.source EQUALS act.ground_truth)])
+
+        trueNegative.append(predicted.loc[(predicted.date_time > minTime) & (predicted.date_time < maxTime) & (predicted.predition EQUALS 0) & (predicted.source EQUALS act.ground_truth)])
+
+        falsePositive.append(predicted.loc[(predicted.date_time < minTime) | (predicted.date_time > maxTime) & (predicted.predition EQUALS 1)])
+
+        falseNegative.append(predicted.loc[(predicted.date_time < minTime) | (predicted.date_time > maxTime) & (predicted.predition EQUALS 0)])
+
+
+
+        del maxTime, minTime
+
+    
+
+    ELSE: #remove all empty row
+
+        SET truePositive TO list(filter(lambda dfTP: not dfTP.empty, truePositive))        
+
+        SET trueNegative TO list(filter(lambda dfTN: not dfTN.empty, trueNegative))
+
+        SET falsePositive TO list(filter(lambda dfFP: not dfFP.empty, falsePositive))
+
+        SET falseNegative TO list(filter(lambda dfFN: not dfFN.empty, falseNegative))
+
+
+
+        SET count TO 0
+
+        FOR i, trueP IN falsePositive:
+
+            SET count TO count + len(trueP)
+
+        OUTPUT("True Positive: ", count)
+
+
+
+
+
+        # OUTPUT("\nTrue Positive: ", len(truePositive))
+
+        # OUTPUT("True Negative: ", len(trueNegative))
+
+        # OUTPUT("False Positive: ", len(falsePositive))
+
+        # OUTPUT("False Negative: ", len(falseNegative))
+
+        # OUTPUT((falseNegative))
+
+
+
+    RETURN 
