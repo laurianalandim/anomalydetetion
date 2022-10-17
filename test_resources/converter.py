@@ -1,6 +1,6 @@
 import re
 
-python_file = 'file.py'
+python_file = '/home/hadoop/workspace/anomalydetetion/test_resources/file.py'
 work_file = None
 
 basic_conversion_rules = {"for": "FOR", "=": "TO", "if": "IF", "==": "EQUALS", "while": "WHILE", "until": "UNTIL", "import": "IMPORT", "class": "DEFINE CLASS", "def": "DEFINE FUNCTION", "else:": "ELSE:", "elif": "ELSEIF", "except:": "EXCEPT:", "try:": "TRY:", "pass": "PASS", "in": "IN"}
