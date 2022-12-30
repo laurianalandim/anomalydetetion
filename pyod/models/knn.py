@@ -139,7 +139,7 @@ class KNN(BaseDetector):
         ``threshold_`` on ``decision_scores_``.
     """
 
-    def __init__(self, contamination=0.1, n_neighbors=5, method='largest',
+    def __init__(self, contamination=0.1, n_neighbors=3, method='largest',
                  radius=1.0, algorithm='auto', leaf_size=30,
                  metric='minkowski', p=2, metric_params=None, n_jobs=1,
                  **kwargs):
